@@ -92,12 +92,14 @@ auto declval() -> decltype(declval<T>(0)) {
 template<typename Value_, typename Internal>
 struct Prop {
   template<typename... Args>
-  requires(!isAggregate<Value_>) Prop(Args &&...args) // NOLINT(google-explicit-constructor)
+    requires(!isAggregate<Value_>)
+  Prop(Args &&...args) // NOLINT(google-explicit-constructor)
       : value(forward<Args>(args)...) {
   }
 
   template<typename... Args>
-  requires(isAggregate<Value_>) Prop(Args &&...args) // NOLINT(google-explicit-constructor)
+    requires(isAggregate<Value_>)
+  Prop(Args &&...args) // NOLINT(google-explicit-constructor)
       : value { forward<Args>(args)... } {
   }
 
