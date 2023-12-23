@@ -1,1 +1,3 @@
 all.wasm
+all.o
+all.ll
